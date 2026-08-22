@@ -111,9 +111,12 @@ const people = {
   },
   pagey: {
     name: "Pagey",
-    initials: "PY",
+    image: "images/pagey.png",
+    zoomClass: "credits-avatar--pagey",
     role: "Middleman HR",
     roleClass: "credits-badge--mm-hr",
+    roblox: "https://www.roblox.com/users/69333084/profile",
+    discord: "https://discord.com/users/479759073785413635",
   },
   ash: {
     name: "Ash",
@@ -205,7 +208,11 @@ if (!person) {
 } else {
   document.title = `${person.name} — TMMS`;
 
-  const zoomClass = person.zoom ? " credits-avatar--deluxe" : "";
+  const extraAvatarClass = person.zoomClass
+    ? ` ${person.zoomClass}`
+    : person.zoom
+      ? " credits-avatar--deluxe"
+      : "";
   const isMiddleman = person.roleClass === "credits-badge--mm" || person.roleClass.startsWith("credits-badge--mm-");
   const icon = isMiddleman
     ? middlemanIcon
@@ -250,7 +257,7 @@ if (!person) {
 
   const avatar = person.initials
     ? `<div class="credits-avatar credits-avatar--initials">${person.initials}</div>`
-    : `<div class="credits-avatar${zoomClass}">
+    : `<div class="credits-avatar${extraAvatarClass}">
         <img src="${person.image}" alt="${person.name}" />
       </div>`;
 

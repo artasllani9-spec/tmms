@@ -961,6 +961,11 @@ a {
   transform-origin: 40% 35%;
 }
 
+.credits-avatar--pagey img {
+  transform: scale(1.48);
+  transform-origin: 50% 46%;
+}
+
 .credits-avatar--initials {
   display: flex;
   align-items: center;
