@@ -589,6 +589,8 @@ a {
 .credits-person:nth-child(6) { animation-delay: 0.62s; }
 .credits-person:nth-child(7) { animation-delay: 0.7s; }
 .credits-person:nth-child(8) { animation-delay: 0.78s; }
+.credits-person:nth-child(9) { animation-delay: 0.86s; }
+.credits-person:nth-child(10) { animation-delay: 0.94s; }
 
 .credits-person:hover {
   transform: translateY(-4px);
@@ -786,6 +788,79 @@ a {
     0 0 26px rgba(154, 120, 232, 0.5);
 }
 
+.credits-person:has(.credits-badge--mm-hr) { --rank: 36, 78, 186; }
+.credits-person:has(.credits-badge--mm-expert) { --rank: 255, 212, 59; }
+.credits-person:has(.credits-badge--mm-advanced) { --rank: 255, 68, 68; }
+.credits-person:has(.credits-badge--mm-senior) { --rank: 62, 224, 106; }
+.credits-person:has(.credits-badge--mm) { --rank: 22, 148, 74; }
+.credits-person:has(.credits-badge--mm-beginner) { --rank: 59, 130, 246; }
+.credits-person:has(.credits-badge--mm-starter) { --rank: 255, 126, 182; }
+
+.credits-person:has(.credits-badge--mm-hr):hover,
+.credits-person:has(.credits-badge--mm-expert):hover,
+.credits-person:has(.credits-badge--mm-advanced):hover,
+.credits-person:has(.credits-badge--mm-senior):hover,
+.credits-person:has(.credits-badge--mm):hover,
+.credits-person:has(.credits-badge--mm-beginner):hover,
+.credits-person:has(.credits-badge--mm-starter):hover {
+  background: rgba(8, 12, 22, 0.55);
+  border-color: rgba(var(--rank), 0.3);
+  box-shadow: inset 0 0 32px rgba(var(--rank), 0.18);
+}
+
+.credits-person:has(.credits-badge--mm-hr):hover .credits-avatar,
+.credits-person:has(.credits-badge--mm-expert):hover .credits-avatar,
+.credits-person:has(.credits-badge--mm-advanced):hover .credits-avatar,
+.credits-person:has(.credits-badge--mm-senior):hover .credits-avatar,
+.credits-person:has(.credits-badge--mm):hover .credits-avatar,
+.credits-person:has(.credits-badge--mm-beginner):hover .credits-avatar,
+.credits-person:has(.credits-badge--mm-starter):hover .credits-avatar {
+  border-color: rgb(var(--rank));
+  box-shadow:
+    0 0 16px rgba(var(--rank), 0.85),
+    0 0 32px rgba(var(--rank), 0.45);
+}
+
+.credits-person:has(.credits-badge--mm-hr):hover .credits-name,
+.credits-person:has(.credits-badge--mm-expert):hover .credits-name,
+.credits-person:has(.credits-badge--mm-advanced):hover .credits-name,
+.credits-person:has(.credits-badge--mm-senior):hover .credits-name,
+.credits-person:has(.credits-badge--mm):hover .credits-name,
+.credits-person:has(.credits-badge--mm-beginner):hover .credits-name,
+.credits-person:has(.credits-badge--mm-starter):hover .credits-name {
+  color: rgb(var(--rank));
+  text-shadow:
+    0 0 12px rgba(var(--rank), 0.95),
+    0 0 24px rgba(var(--rank), 0.55);
+}
+
+.credits-person:has(.credits-badge--mm-hr):hover .credits-link-icon,
+.credits-person:has(.credits-badge--mm-expert):hover .credits-link-icon,
+.credits-person:has(.credits-badge--mm-advanced):hover .credits-link-icon,
+.credits-person:has(.credits-badge--mm-senior):hover .credits-link-icon,
+.credits-person:has(.credits-badge--mm):hover .credits-link-icon,
+.credits-person:has(.credits-badge--mm-beginner):hover .credits-link-icon,
+.credits-person:has(.credits-badge--mm-starter):hover .credits-link-icon {
+  color: rgb(var(--rank));
+  filter:
+    drop-shadow(0 0 6px rgba(var(--rank), 0.95))
+    drop-shadow(0 0 12px rgba(var(--rank), 0.55));
+}
+
+.credits-person:has(.credits-badge--mm-hr):hover .credits-badge,
+.credits-person:has(.credits-badge--mm-expert):hover .credits-badge,
+.credits-person:has(.credits-badge--mm-advanced):hover .credits-badge,
+.credits-person:has(.credits-badge--mm-senior):hover .credits-badge,
+.credits-person:has(.credits-badge--mm):hover .credits-badge,
+.credits-person:has(.credits-badge--mm-beginner):hover .credits-badge,
+.credits-person:has(.credits-badge--mm-starter):hover .credits-badge {
+  border-color: rgba(var(--rank), 0.75);
+  box-shadow: 0 0 18px rgba(var(--rank), 0.45);
+  text-shadow:
+    0 0 14px rgba(var(--rank), 0.9),
+    0 0 26px rgba(var(--rank), 0.5);
+}
+
 .credits-avatar-wrap {
   --ring: 147, 197, 253;
   position: relative;
@@ -812,6 +887,16 @@ a {
 
 .credits-person:has(.credits-badge--mod) .credits-avatar-wrap {
   --ring: 154, 120, 232;
+}
+
+.credits-person:has(.credits-badge--mm-hr) .credits-avatar-wrap,
+.credits-person:has(.credits-badge--mm-expert) .credits-avatar-wrap,
+.credits-person:has(.credits-badge--mm-advanced) .credits-avatar-wrap,
+.credits-person:has(.credits-badge--mm-senior) .credits-avatar-wrap,
+.credits-person:has(.credits-badge--mm) .credits-avatar-wrap,
+.credits-person:has(.credits-badge--mm-beginner) .credits-avatar-wrap,
+.credits-person:has(.credits-badge--mm-starter) .credits-avatar-wrap {
+  --ring: var(--rank);
 }
 
 .credits-avatar-wrap::before {
@@ -989,6 +1074,17 @@ a.credits-person:hover .credits-name {
   text-shadow: 0 0 12px rgba(154, 120, 232, 0.45);
 }
 
+.credits-badge--mm-hr,
+.credits-badge--mm-expert,
+.credits-badge--mm-advanced,
+.credits-badge--mm-senior,
+.credits-badge--mm,
+.credits-badge--mm-beginner,
+.credits-badge--mm-starter {
+  color: rgb(var(--rank));
+  text-shadow: 0 0 12px rgba(var(--rank), 0.45);
+}
+
 a.credits-name-row {
   color: inherit;
 }
@@ -1088,6 +1184,20 @@ body[data-role="mod"] .profile-orbs {
     radial-gradient(circle at 78% 68%, rgba(124, 92, 212, 0.14), transparent 20%);
 }
 
+body[data-role="mm-hr"] { --glow: 36, 78, 186; }
+body[data-role="mm-expert"] { --glow: 255, 212, 59; }
+body[data-role="mm-advanced"] { --glow: 255, 68, 68; }
+body[data-role="mm-senior"] { --glow: 62, 224, 106; }
+body[data-role="mm"] { --glow: 22, 148, 74; }
+body[data-role="mm-beginner"] { --glow: 59, 130, 246; }
+body[data-role="mm-starter"] { --glow: 255, 126, 182; }
+
+body[data-role^="mm"] .profile-orbs {
+  background:
+    radial-gradient(circle at 22% 30%, rgba(var(--glow), 0.22), transparent 18%),
+    radial-gradient(circle at 78% 68%, rgba(var(--glow), 0.14), transparent 20%);
+}
+
 .profile-card {
   --mx: 50%;
   --my: 28%;
@@ -1178,6 +1288,24 @@ body[data-role="mod"] .profile-orbs {
 
 .profile-card--mod {
   --glow: 154, 120, 232;
+}
+
+.profile-card--mm-hr { --glow: 36, 78, 186; }
+.profile-card--mm-expert { --glow: 255, 212, 59; }
+.profile-card--mm-advanced { --glow: 255, 68, 68; }
+.profile-card--mm-senior { --glow: 62, 224, 106; }
+.profile-card--mm { --glow: 22, 148, 74; }
+.profile-card--mm-beginner { --glow: 59, 130, 246; }
+.profile-card--mm-starter { --glow: 255, 126, 182; }
+
+.profile-card--mm-hr,
+.profile-card--mm-expert,
+.profile-card--mm-advanced,
+.profile-card--mm-senior,
+.profile-card--mm,
+.profile-card--mm-beginner,
+.profile-card--mm-starter {
+  --rank: var(--glow);
 }
 
 @keyframes profile-card-glow {
@@ -1563,7 +1691,13 @@ body[data-role="mod"] .profile-orbs {
     font-size: 1.25rem;
   }
 
-  .credits-badge--hmod {
+  .credits-badge--hmod,
+  .credits-badge--mm-hr,
+  .credits-badge--mm-advanced,
+  .credits-badge--mm-beginner,
+  .credits-badge--mm-expert,
+  .credits-badge--mm-senior,
+  .credits-badge--mm-starter {
     font-size: 0.64rem;
     padding-left: 0.42rem;
     padding-right: 0.42rem;

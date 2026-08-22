@@ -109,6 +109,42 @@ const people = {
     discord: "https://discord.com/users/826172451137257482",
     roblox: "https://www.roblox.com/users/793043156/profile",
   },
+  pagey: {
+    name: "Pagey",
+    initials: "PY",
+    role: "Middleman HR",
+    roleClass: "credits-badge--mm-hr",
+  },
+  ash: {
+    name: "Ash",
+    initials: "AH",
+    role: "Expert MM",
+    roleClass: "credits-badge--mm-expert",
+  },
+  victoria: {
+    name: "Victoria",
+    initials: "VT",
+    role: "Advanced MM",
+    roleClass: "credits-badge--mm-advanced",
+  },
+  christina: {
+    name: "Christina",
+    initials: "CT",
+    role: "Middleman",
+    roleClass: "credits-badge--mm",
+  },
+  sage: {
+    name: "Sage",
+    initials: "SG",
+    role: "Middleman",
+    roleClass: "credits-badge--mm",
+  },
+  pug: {
+    name: "Pug",
+    initials: "PU",
+    role: "Beginner MM",
+    roleClass: "credits-badge--mm-beginner",
+  },
 };
 
 const crownIcon = `
@@ -133,9 +169,26 @@ const modIcon = `
   </svg>
 `;
 
+const middlemanIcon = `
+  <svg class="credits-badge-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="currentColor" d="M7 7h8.2l-1.6-1.6L15 4l4 4-4 4-1.4-1.4L15.2 9H7V7zm10 10H8.8l1.6 1.6L9 20l-4-4 4-4 1.4 1.4L8.8 15H17v2z"/>
+  </svg>
+`;
+
+const mmRanks = {
+  yls: { role: "Advanced MM", roleClass: "credits-badge--mm-advanced" },
+  mads: { role: "Senior MM", roleClass: "credits-badge--mm-senior" },
+  pearl: { role: "Beginner MM", roleClass: "credits-badge--mm-beginner" },
+  bor4: { role: "Starter MM", roleClass: "credits-badge--mm-starter" },
+};
+
 const params = new URLSearchParams(window.location.search);
 const personId = (params.get("person") || "").toLowerCase();
-const person = people[personId];
+const person = people[personId] ? { ...people[personId] } : null;
+
+if (person && params.get("team") === "middleman" && mmRanks[personId]) {
+  Object.assign(person, mmRanks[personId]);
+}
 
 if (!person) {
   window.location.replace("credits.html");
@@ -143,11 +196,14 @@ if (!person) {
   document.title = `${person.name} — TMMS`;
 
   const zoomClass = person.zoom ? " credits-avatar--deluxe" : "";
-  const icon = {
-    "credits-badge--management": managementIcon,
-    "credits-badge--hmod": hmodIcon,
-    "credits-badge--mod": modIcon,
-  }[person.roleClass] || crownIcon;
+  const isMiddleman = person.roleClass === "credits-badge--mm" || person.roleClass.startsWith("credits-badge--mm-");
+  const icon = isMiddleman
+    ? middlemanIcon
+    : {
+        "credits-badge--management": managementIcon,
+        "credits-badge--hmod": hmodIcon,
+        "credits-badge--mod": modIcon,
+      }[person.roleClass] || crownIcon;
 
   const glowClass = {
     "credits-badge--owner": "profile-card--owner",
@@ -155,16 +211,32 @@ if (!person) {
     "credits-badge--management": "profile-card--management",
     "credits-badge--hmod": "profile-card--hmod",
     "credits-badge--mod": "profile-card--mod",
+    "credits-badge--mm-hr": "profile-card--mm-hr",
+    "credits-badge--mm-expert": "profile-card--mm-expert",
+    "credits-badge--mm-advanced": "profile-card--mm-advanced",
+    "credits-badge--mm-senior": "profile-card--mm-senior",
+    "credits-badge--mm": "profile-card--mm",
+    "credits-badge--mm-beginner": "profile-card--mm-beginner",
+    "credits-badge--mm-starter": "profile-card--mm-starter",
   }[person.roleClass];
 
-  document.querySelector(".profile-card").classList.add(glowClass);
-  document.body.dataset.role = {
+  const roleKey = {
     "credits-badge--owner": "owner",
     "credits-badge--coowner": "coowner",
     "credits-badge--management": "management",
     "credits-badge--hmod": "hmod",
     "credits-badge--mod": "mod",
+    "credits-badge--mm-hr": "mm-hr",
+    "credits-badge--mm-expert": "mm-expert",
+    "credits-badge--mm-advanced": "mm-advanced",
+    "credits-badge--mm-senior": "mm-senior",
+    "credits-badge--mm": "mm",
+    "credits-badge--mm-beginner": "mm-beginner",
+    "credits-badge--mm-starter": "mm-starter",
   }[person.roleClass];
+
+  document.querySelector(".profile-card").classList.add(glowClass);
+  document.body.dataset.role = roleKey;
 
   const avatar = person.initials
     ? `<div class="credits-avatar credits-avatar--initials">${person.initials}</div>`
@@ -194,9 +266,9 @@ if (!person) {
   const discordBtn = document.getElementById("discord-btn");
   const robloxBtn = document.getElementById("roblox-btn");
 
-  discordBtn.hidden = false;
-  robloxBtn.hidden = false;
-  document.querySelector(".profile-actions-row").hidden = false;
+  discordBtn.hidden = !person.discord;
+  robloxBtn.hidden = !person.roblox;
+  document.querySelector(".profile-actions-row").hidden = !person.discord && !person.roblox;
 
   if (person.discord) {
     discordBtn.href = person.discord;
