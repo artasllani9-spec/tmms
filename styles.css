@@ -587,6 +587,8 @@ a {
 .credits-person:nth-child(4) { animation-delay: 0.46s; }
 .credits-person:nth-child(5) { animation-delay: 0.54s; }
 .credits-person:nth-child(6) { animation-delay: 0.62s; }
+.credits-person:nth-child(7) { animation-delay: 0.7s; }
+.credits-person:nth-child(8) { animation-delay: 0.78s; }
 
 .credits-person:hover {
   transform: translateY(-4px);
@@ -714,6 +716,76 @@ a {
     0 0 26px rgba(199, 125, 255, 0.5);
 }
 
+.credits-person:has(.credits-badge--hmod):hover {
+  background: rgba(28, 8, 18, 0.55);
+  border-color: rgba(255, 126, 182, 0.3);
+  box-shadow: inset 0 0 32px rgba(255, 126, 182, 0.18);
+}
+
+.credits-person:has(.credits-badge--hmod):hover .credits-avatar {
+  border-color: #ff7eb6;
+  box-shadow:
+    0 0 16px rgba(255, 126, 182, 0.85),
+    0 0 32px rgba(255, 126, 182, 0.45);
+}
+
+.credits-person:has(.credits-badge--hmod):hover .credits-name {
+  color: #ff7eb6;
+  text-shadow:
+    0 0 12px rgba(255, 126, 182, 0.95),
+    0 0 24px rgba(255, 126, 182, 0.55);
+}
+
+.credits-person:has(.credits-badge--hmod):hover .credits-link-icon {
+  color: #ff7eb6;
+  filter:
+    drop-shadow(0 0 6px rgba(255, 126, 182, 0.95))
+    drop-shadow(0 0 12px rgba(255, 126, 182, 0.55));
+}
+
+.credits-person:has(.credits-badge--hmod):hover .credits-badge {
+  border-color: rgba(255, 126, 182, 0.75);
+  box-shadow: 0 0 18px rgba(255, 126, 182, 0.45);
+  text-shadow:
+    0 0 14px rgba(255, 126, 182, 0.9),
+    0 0 26px rgba(255, 126, 182, 0.5);
+}
+
+.credits-person:has(.credits-badge--mod):hover {
+  background: rgba(16, 10, 32, 0.55);
+  border-color: rgba(154, 120, 232, 0.3);
+  box-shadow: inset 0 0 32px rgba(154, 120, 232, 0.18);
+}
+
+.credits-person:has(.credits-badge--mod):hover .credits-avatar {
+  border-color: #9a78e8;
+  box-shadow:
+    0 0 16px rgba(154, 120, 232, 0.85),
+    0 0 32px rgba(154, 120, 232, 0.45);
+}
+
+.credits-person:has(.credits-badge--mod):hover .credits-name {
+  color: #9a78e8;
+  text-shadow:
+    0 0 12px rgba(154, 120, 232, 0.95),
+    0 0 24px rgba(154, 120, 232, 0.55);
+}
+
+.credits-person:has(.credits-badge--mod):hover .credits-link-icon {
+  color: #9a78e8;
+  filter:
+    drop-shadow(0 0 6px rgba(154, 120, 232, 0.95))
+    drop-shadow(0 0 12px rgba(154, 120, 232, 0.55));
+}
+
+.credits-person:has(.credits-badge--mod):hover .credits-badge {
+  border-color: rgba(154, 120, 232, 0.75);
+  box-shadow: 0 0 18px rgba(154, 120, 232, 0.45);
+  text-shadow:
+    0 0 14px rgba(154, 120, 232, 0.9),
+    0 0 26px rgba(154, 120, 232, 0.5);
+}
+
 .credits-avatar-wrap {
   --ring: 147, 197, 253;
   position: relative;
@@ -732,6 +804,14 @@ a {
 
 .credits-person:has(.credits-badge--management) .credits-avatar-wrap {
   --ring: 199, 125, 255;
+}
+
+.credits-person:has(.credits-badge--hmod) .credits-avatar-wrap {
+  --ring: 255, 126, 182;
+}
+
+.credits-person:has(.credits-badge--mod) .credits-avatar-wrap {
+  --ring: 154, 120, 232;
 }
 
 .credits-avatar-wrap::before {
@@ -796,6 +876,20 @@ a {
   transform-origin: 40% 35%;
 }
 
+.credits-avatar--initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Outfit", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.7rem;
+  letter-spacing: 0.06em;
+  color: #f7f0ff;
+  background:
+    radial-gradient(circle at 35% 28%, rgba(var(--ring), 0.42), transparent 52%),
+    #070b10;
+}
+
 .credits-name-row {
   display: flex;
   align-items: center;
@@ -815,7 +909,12 @@ a {
   transition: text-decoration-color 0.2s ease;
 }
 
-.credits-name-row:hover .credits-name {
+a.credits-person {
+  color: inherit;
+  text-decoration: none;
+}
+
+a.credits-person:hover .credits-name {
   text-decoration-color: currentColor;
 }
 
@@ -878,6 +977,16 @@ a {
 .credits-badge--management {
   color: #c77dff;
   text-shadow: 0 0 12px rgba(199, 125, 255, 0.45);
+}
+
+.credits-badge--hmod {
+  color: #ff7eb6;
+  text-shadow: 0 0 12px rgba(255, 126, 182, 0.45);
+}
+
+.credits-badge--mod {
+  color: #9a78e8;
+  text-shadow: 0 0 12px rgba(154, 120, 232, 0.45);
 }
 
 a.credits-name-row {
@@ -967,6 +1076,18 @@ body[data-role="management"] .profile-orbs {
     radial-gradient(circle at 78% 68%, rgba(147, 51, 234, 0.14), transparent 20%);
 }
 
+body[data-role="hmod"] .profile-orbs {
+  background:
+    radial-gradient(circle at 22% 30%, rgba(255, 126, 182, 0.22), transparent 18%),
+    radial-gradient(circle at 78% 68%, rgba(244, 114, 182, 0.14), transparent 20%);
+}
+
+body[data-role="mod"] .profile-orbs {
+  background:
+    radial-gradient(circle at 22% 30%, rgba(154, 120, 232, 0.22), transparent 18%),
+    radial-gradient(circle at 78% 68%, rgba(124, 92, 212, 0.14), transparent 20%);
+}
+
 .profile-card {
   --mx: 50%;
   --my: 28%;
@@ -1051,6 +1172,14 @@ body[data-role="management"] .profile-orbs {
   --glow: 199, 125, 255;
 }
 
+.profile-card--hmod {
+  --glow: 255, 126, 182;
+}
+
+.profile-card--mod {
+  --glow: 154, 120, 232;
+}
+
 @keyframes profile-card-glow {
   0%,
   100% {
@@ -1074,6 +1203,10 @@ body[data-role="management"] .profile-orbs {
   width: 14.5rem;
   height: 14.5rem;
   animation: credits-rise 0.75s ease 0.14s backwards;
+}
+
+.profile-card .credits-avatar--initials {
+  font-size: 3.15rem;
 }
 
 .profile-card .credits-avatar-wrap::before {
@@ -1195,6 +1328,10 @@ body[data-role="management"] .profile-orbs {
 .profile-actions-row {
   display: flex;
   gap: 0.8rem;
+}
+
+.profile-actions-row[hidden] {
+  display: none;
 }
 
 .profile-btn {
@@ -1420,6 +1557,16 @@ body[data-role="management"] .profile-orbs {
   .credits-badge--management .credits-badge-icon {
     width: 1.05em;
     height: 1.05em;
+  }
+
+  .credits-avatar--initials {
+    font-size: 1.25rem;
+  }
+
+  .credits-badge--hmod {
+    font-size: 0.64rem;
+    padding-left: 0.42rem;
+    padding-right: 0.42rem;
   }
 
   .profile-page {
